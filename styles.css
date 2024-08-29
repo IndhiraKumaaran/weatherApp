@@ -9,11 +9,13 @@ body{
 .weatherForm{
     margin: 20px;
 }
-.cityIntput{
+.cityInput{
     padding: 10px;
     font-size: 2rem;
     font-weight: bold;
-    border: 2px solid hsla(0, 0%, 20%,0.3);
+    background-color: rgb(250, 205, 189);
+    
+    border:  none ;
     border-radius: 10px;
     margin: 10px;
     width: 300px;
