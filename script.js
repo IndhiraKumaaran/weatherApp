@@ -1,7 +1,7 @@
 const weatherform=document.querySelector(".weatherForm");
 const cityInput = document.querySelector(".cityInput");
 const card = document.querySelector(".card");
-const apikey="";
+const apikey="fd0b85eeebaddeb0bc2cea53dd8d06c4";
 weatherform.addEventListener("submit",async event=>{
     event.preventDefault();
     const city = cityInput.value;
@@ -24,34 +24,35 @@ async function getweather(city) {
     const apiurl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
     const response = await fetch(apiurl);
     if(!response.ok){
-        throw new Error("could not fetch the weather data");
+        throw new Error("coul'd not fetch the weather data");
     }
+    console.log(response);
+
     return await response.json();
-    //console.log(response);
     
 }
 function display(data){
 const {name:city,
-       main:{temp,humidity,
-       weather:[{description,id}]}}=data;
-card.textContent="";
-card.style.display="flex";
-const cityDisp =document.createElement("h1");
-const tempDisp =document.createElement("p");
-const humidityDisp =document.createElement("p");
-const descDisp =document.createElement("p");
-const weatherDisp =document.createElement("p");
-cityDisp.textContent=city;
-tempDisp.textContent=`${(temp-273.15).toFixed(1) }C`;
-humidityDisp.textContent=`humdity:${humidity}`;
-descDisp.textContent=description;
-cityDisp.classList.add("cityDisplay")
-card.appendChildchild(cityDisp);
-card.appendChild(tempDisp);
-card.appendChild(humidityDisp)
-card.appendChild(descDisp);
+       main:{temp,humidity},
+       weather:[{description,id}]}=data;
+    card.textContent="";
+    card.style.display="flex";
+    const cityDisp =document.createElement("h1");
+    const tempDisp =document.createElement("p");
+    const humidityDisp =document.createElement("p");
+    const descDisp =document.createElement("p");
+//  const weatherDisp =document.createElement("p");
+    cityDisp.textContent=city;
+    tempDisp.textContent=`${(temp-273.15).toFixed(1) }C`;
+    humidityDisp.textContent=`humdity:${humidity}`;
+    descDisp.textContent=description;
+    cityDisp.classList.add("cityDisplay")
+    card.appendChildchild(cityDisp);
+    card.appendChild(tempDisp);
+    card.appendChild(humidityDisp)
+    card.appendChild(descDisp);
+       }
 
-}
 
 function getEmo(WeatherId){
 
